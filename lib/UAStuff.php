@@ -1,4 +1,5 @@
 <?php
+// Warning: Untested code
 public class UAStuff {
 	private static $ua = $_SERVER['HTTP_USER_AGENT'];
 	private static $array = array();
