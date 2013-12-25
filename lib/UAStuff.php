@@ -1,11 +1,13 @@
 <?php
+// Written for PHP Version 5.3.26, may still be compatible with other versions
 class UAStuff {
 	private static $ua;
 	private static $array = array();
-	
+
 	public function __construct() {
 		$this->ua = $_SERVER['HTTP_USER_AGENT'];
 	}
+
 	public function getUa() {
 		return $ua = $this->ua;
 	}
@@ -13,15 +15,17 @@ class UAStuff {
 		return $this->ua = $inputUa;
 	}
 	
-	public static function uaToArray($ua) {
+	// break a User Agent string into logical subsections and store them in an array
+	// is possible to develop further
+	public function uaToArray($ua) {
 		$array = array();
 
 		// start with the first part
 		$in = 0;
 		$out = strpos($ua, " ");
-		$word = substr($ua, $in, $out);
-		if (!strpos($word, "(")) {
-			array_push($array, $word);
+		$section = substr($ua, $in, $out);
+		if (!strpos($section, "(")) {
+			array_push($array, $section);
 		}
 
 		// then loop the rest
@@ -30,18 +34,18 @@ class UAStuff {
 			$ua = substr($ua, strlen($array[$i])+1);
 			if (strpos($ua, " ") == false) { 
 				$out = strlen($ua);
-				$word = substr($ua, 0, $out);
-				array_push($array, $word);
+				$section = substr($ua, 0, $out);
+				array_push($array, $section);
 				break;
 			}
 			if ($ua[0] == "(") {
 				$out = strpos($ua, ")")+1;
-				$word = substr($ua, 0, $out);
-				array_push($array, $word);
+				$section = substr($ua, 0, $out);
+				array_push($array, $section);
 			} else {
 				$out = strpos($ua, " ");
-				$word = substr($ua, 0, $out);
-				array_push($array, $word);
+				$section = substr($ua, 0, $out);
+				array_push($array, $section);
 			}
 			$i++;
 		}
@@ -57,6 +61,5 @@ class UAStuff {
 		$taggedString = "<p><code>" . $string . "</code></p>\n";
 		echo $taggedString;
 	}
-	
 }
 ?>
