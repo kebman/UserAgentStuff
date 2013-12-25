@@ -1,8 +1,18 @@
 <?php
-// Warning: Untested code
-public class UAStuff {
-	private static $ua = $_SERVER['HTTP_USER_AGENT'];
+class UAStuff {
+	private static $ua;
 	private static $array = array();
+	
+	public function __construct() {
+		$this->ua = $_SERVER['HTTP_USER_AGENT'];
+	}
+	public function getUa() {
+		return $ua = $this->ua;
+	}
+	public function setUa($inputUa) {
+		return $this->ua = $inputUa;
+	}
+	
 	public static function uaToArray($ua) {
 		$array = array();
 
@@ -37,7 +47,7 @@ public class UAStuff {
 		}
 		return $array;
 	}
-
+	
 	// helper methods to simplify display
 	public static function ptag($string) {
 		$taggedString = "<p>" . $string . "</p>\n";
@@ -47,5 +57,6 @@ public class UAStuff {
 		$taggedString = "<p><code>" . $string . "</code></p>\n";
 		echo $taggedString;
 	}
+	
 }
 ?>
