@@ -3,7 +3,7 @@ UserAgentStuff in PHP
 
 A method for stuffing User Agent parts into an array is out.
 
-Merry Christmas! :D
+Uncertain if I'll bother doing more. Was fun while it lasted. :)
 
 # Licence 
 
